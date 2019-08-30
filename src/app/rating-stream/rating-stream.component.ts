@@ -9,7 +9,7 @@ import * as Stomp from 'stompjs';
 })
 export class RatingStreamComponent implements OnInit {
 
-  private serverUrl = 'http://localhost:8080/ratings';
+  private serverUrl = 'http://localhost:8080/socket';
   private stompClient;
 
   constructor() {
