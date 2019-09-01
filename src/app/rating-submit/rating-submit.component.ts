@@ -12,4 +12,6 @@ export class RatingSubmitComponent implements OnInit {
   ngOnInit() {
   }
 
+  onRate($event: {newValue: number}) {
+  }
 }

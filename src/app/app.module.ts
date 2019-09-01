@@ -6,6 +6,7 @@ import { RatingStreamComponent } from './rating-stream/rating-stream.component';
 import { RouterModule } from '@angular/router';
 import { RatingSubmitComponent } from './rating-submit/rating-submit.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,10 @@ import { AppRoutingModule } from './app-routing.module';
     RatingSubmitComponent
   ],
   imports: [
-    BrowserModule, RouterModule, AppRoutingModule
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    RatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
