@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { RatingSubmitComponent } from './rating-submit/rating-submit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RatingModule } from 'ng-starrating';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,12 @@ import { RatingModule } from 'ng-starrating';
     RouterModule,
     AppRoutingModule,
     RatingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
