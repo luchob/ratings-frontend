@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Rating} from '../model/rating';
 
 @Component({
   selector: 'app-rating-submit',
@@ -7,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RatingSubmitComponent implements OnInit {
 
+  model = new Rating(0, '');
+
+  submitted = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
   onRate($event: {newValue: number}) {
+    this.model.rating = $event.newValue;
+  }
+
+  onSubmit() {
+    this.submitted = true;
   }
 }
