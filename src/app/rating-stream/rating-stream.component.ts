@@ -27,13 +27,16 @@ export class RatingStreamComponent implements OnInit {
     this.stompClient.connect({}, () => {
       that.stompClient.subscribe('/ratings', (message) => {
           if (message.body) {
-            console.log(message.body);
+            console.log('Received a message!');
           }
         },
         () => {
           // todo
            console.log('Unable to connect!');
         });
-    });
+    },
+      () => {
+        console.log('Disconnected...');
+      });
   }
 }

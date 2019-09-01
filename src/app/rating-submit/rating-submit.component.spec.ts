@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RatingStreamComponent } from './rating-stream.component';
+import { RatingSubmitComponent } from './rating-submit.component';
 
-describe('RatingStreamComponent', () => {
-  let component: RatingStreamComponent;
-  let fixture: ComponentFixture<RatingStreamComponent>;
+describe('RatingSubmitComponent', () => {
+  let component: RatingSubmitComponent;
+  let fixture: ComponentFixture<RatingSubmitComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RatingStreamComponent ]
+      declarations: [ RatingSubmitComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RatingStreamComponent);
+    fixture = TestBed.createComponent(RatingSubmitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
