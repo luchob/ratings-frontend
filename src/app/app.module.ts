@@ -8,12 +8,14 @@ import { RatingSubmitComponent } from './rating-submit/rating-submit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RatingModule } from 'ng-starrating';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { RatingViewComponent } from './rating-view/rating-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RatingStreamComponent,
-    RatingSubmitComponent
+    RatingSubmitComponent,
+    RatingViewComponent
   ],
   imports: [
     BrowserModule,

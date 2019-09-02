@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
+import {Rating} from '../model/rating';
 
 @Component({
   selector: 'app-rating-stream',
@@ -9,8 +10,11 @@ import * as Stomp from 'stompjs';
 })
 export class RatingStreamComponent implements OnInit {
 
+  // todo - fix URL
   private serverUrl = 'http://localhost:8080/socket';
   private stompClient;
+
+  private ratings: Array<Rating> = [];
 
   constructor() {
   }
@@ -27,15 +31,16 @@ export class RatingStreamComponent implements OnInit {
     this.stompClient.connect({}, () => {
       that.stompClient.subscribe('/ratings', (message) => {
           if (message.body) {
-            console.log('Received a message!');
+            this.ratings.push(JSON.parse(message.body));
           }
         },
         () => {
-          // todo
+          // todo, show unable to connect
            console.log('Unable to connect!');
         });
     },
       () => {
+        // todo - show disconnected, reconnect
         console.log('Disconnected...');
       });
   }
