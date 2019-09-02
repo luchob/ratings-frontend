@@ -1,8 +1,13 @@
-<div [hidden]="submitted">
-  <h1>Rate our talk</h1>
+<!-- Rating form -->
+<div class="rating-body" [hidden]="submitted">
+
+  <h1>
+    Rate our talk
+  </h1>
+  <small class="text-muted">All submissions are kept anonymous</small>
   <form (ngSubmit)="onSubmit()" #ratingForm="ngForm">
 
-    <div>
+    <div class="rating-section">
       <label for="rating">Rating</label>
       <star-rating
         checkedcolor="gold"
@@ -18,10 +23,15 @@
              [(ngModel)]="model.rating">
     </div>
 
-    <div>
-      <label for="comment">Comment</label>
-      <textarea type="text" id="comment" rows="4"
-                [(ngModel)]="model.comment" name="comment">
+    <div class="form-group">
+      <label for="comment">Comment</label><br/>
+      <textarea
+        id="comment"
+        name="comment"
+        class="form-control rounded-0"
+        placeholder="If applicable, type any reason for your rating here..."
+        type="text"
+        [(ngModel)]="model.comment">
       </textarea>
     </div>
 
@@ -31,29 +41,50 @@
 
   </form>
 </div>
+<!-- EO: Rating form -->
 
-<div [hidden]="!submitted">
-  Thanks a lot for your submission!
-  We take your feedback seriously.
-  <div *ngIf="model.rating < 3">
-    We are sorry that we did not meet your expectations :(
+
+<div class="rating-body" [hidden]="!submitted">
+
+  <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+    <div class="card-header">Thanks a lot for your submission!</div>
+    <div class="card-body">
+      <h5 class="card-title">We take your feedback seriously.</h5>
+      <p class="card-text">
+        <ng-container *ngIf="model.rating < 3">
+          We are sorry that we did not meet your expectations :(
+        </ng-container>
+        <ng-container *ngIf="model.rating == 3">
+          We are sorry that our talk was an average. We have to try more in the future...
+        </ng-container>
+        <ng-container *ngIf="model.rating == 4">
+          We are very happy that you liked the talk!
+          This motivates us. Apparently we have to work more in the future to earn the five stars :-)
+        </ng-container>
+        <ng-container *ngIf="model.rating == 5">
+          We feel really great that you spent a good time with us! This is quite motivating.
+        </ng-container>
+      </p>
+    </div>
   </div>
-  <div *ngIf="model.rating == 3">
-    We are sorry that our talk was an average. We have to try more in the future...
-  </div>
-  <div *ngIf="model.rating == 4">
-    We are very happy that you liked the talk!
-    This motivates us. Apparently we have to work more in the future to earn the five stars :-)
-  </div>
-  <div *ngIf="model.rating == 5">
-    We feel really great that you spent a good time with us! This is quite motivating.
-  </div>
+
 </div>
+<!-- EO: Rating response -->
 
+<!-- Rating submission failure -->
+<div class="rating-body"  [hidden]="!submitFailed">
 
-<div [hidden]="!submitFailed">
-  That's embarrasing. The rating submission failed...
+  <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+    <div class="card-header">Ups...</div>
+    <div class="card-body">
+      <p class="card-text">
+        That's very embarrasing. The rating submission failed for some reason...
+      </p>
+    </div>
+  </div>
+
 </div>
+<!-- EO: Rating submission failure -->
 
 
 
