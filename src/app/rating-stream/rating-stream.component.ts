@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import {Rating} from '../model/rating';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-rating-stream',
@@ -14,7 +15,7 @@ export class RatingStreamComponent implements OnInit {
   private serverUrl = 'http://localhost:8080/socket';
   private stompClient;
 
-  private ratings: Array<Rating> = [];
+  ratings: Array<Rating> = [];
 
   constructor() {
   }
