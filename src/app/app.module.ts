@@ -9,13 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { RatingModule } from 'ng-starrating';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { RatingViewComponent } from './rating-view/rating-view.component';
+import { RatingStreamPollComponent } from './rating-stream-poll/rating-stream-poll.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RatingStreamComponent,
     RatingSubmitComponent,
-    RatingViewComponent
+    RatingViewComponent,
+    RatingStreamPollComponent
   ],
   imports: [
     BrowserModule,

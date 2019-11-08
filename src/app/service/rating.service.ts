@@ -18,4 +18,9 @@ export class RatingService {
 
     return this.http.post<Rating>(url, rating);
   }
+
+  getRatings(): Observable<Rating[]> {
+    const url = `${environment.apiUrl}${this.RATINGS_API}`;
+    return this.http.get<Rating[]>(url);
+  }
 }
