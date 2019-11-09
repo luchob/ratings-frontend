@@ -14,7 +14,12 @@ export class RatingSubmitComponent implements OnInit {
   submitted = false;
   submitFailed = false;
 
-  constructor(private ratingService: RatingService) { }
+  // TODO to be added prod URLs
+  qrCodeUrlImage = '../../assets/local-url.png'
+
+  constructor(private ratingService: RatingService) {
+    //
+  }
 
   ngOnInit() {
   }
