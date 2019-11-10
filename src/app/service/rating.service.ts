@@ -19,8 +19,8 @@ export class RatingService {
     return this.http.post<Rating>(url, rating);
   }
 
-  getRatings(): Observable<Rating[]> {
-    const url = `${environment.apiUrl}${this.RATINGS_API}`;
+  getRatings(lastRatingId: number): Observable<Rating[]> {
+    const url = `${environment.apiUrl}${this.RATINGS_API}/${lastRatingId}`;
     return this.http.get<Rating[]>(url);
   }
 }

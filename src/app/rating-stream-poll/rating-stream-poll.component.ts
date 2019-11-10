@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {delay, repeatWhen, retryWhen} from 'rxjs/operators';
+import {startWith, switchMap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {Subscription} from 'rxjs';
+import {interval, Subscription} from 'rxjs';
 import {Rating} from '../model/rating';
 import {RatingService} from '../service/rating.service';
 
@@ -12,6 +12,7 @@ import {RatingService} from '../service/rating.service';
 })
 export class RatingStreamPollComponent implements OnInit {
 
+  private lastRatingId = -1;
   ratings: Array<Rating> = [];
   private subscriptions = new Subscription();
 
@@ -19,24 +20,22 @@ export class RatingStreamPollComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscriptions.add(
-      this.ratingService.getRatings()
-      .pipe(repeatWhen(completed => completed.pipe(delay(5000))))
-      .pipe(retryWhen(errors => errors.pipe(delay(5000))))
-      .subscribe(
-        r => this.renderNewestRatings(r),
-        error => console.error(error)
-      ));
+    interval(5000)
+    .pipe(
+      startWith(0),
+      switchMap(() => this.ratingService.getRatings(this.lastRatingId))
+    )
+    .subscribe(
+      newRatings => this.renderNewestRatings(newRatings),
+      error => console.error(error)
+    );
   }
 
-  private renderNewestRatings(allRatings: Rating[]) {
+  private renderNewestRatings(newRatings: Rating[]) {
     console.log('Add the new ratings to be rendered.');
-    allRatings.forEach(receivedRating => {
-        const ratingAlreadyExists = this.ratings.findIndex(existingRating => existingRating.id === receivedRating.id) > -1;
-        if (!ratingAlreadyExists) {
-          this.ratings.push(receivedRating);
-        }
-      }
-    );
+    if (newRatings.length > 0) {
+      newRatings.forEach(receivedRating => this.ratings.push(receivedRating));
+      this.lastRatingId = newRatings[newRatings.length - 1].id;
+    }
   }
 }
