@@ -34,7 +34,7 @@ export class RatingStreamPollComponent implements OnInit {
   private renderNewestRatings(newRatings: Rating[]) {
     console.log('Add the new ratings to be rendered.');
     if (newRatings.length > 0) {
-      newRatings.forEach(receivedRating => this.ratings.push(receivedRating));
+      newRatings.forEach(receivedRating => this.ratings.unshift(receivedRating));
       this.lastRatingId = newRatings[newRatings.length - 1].id;
     }
   }
