@@ -1,4 +1,21 @@
-<app-rating-view
-  *ngFor="let rating of ratings"
-  [rating]="rating">
-</app-rating-view>
+<div class="flex-container">
+  <div class="flex-header">
+    <h1>Feedback survey</h1>
+  </div>
+  <div class="flex-content">
+    <div class="flex-left">
+      <div class="ratings-column">
+        <app-rating-view
+          *ngFor="let rating of ratings"
+          [rating]="rating">
+        </app-rating-view>
+      </div>
+    </div>
+    <div class="flex-right">
+      <div class="qrcode">
+          <img [src]="qrCodeUrlImage" alt="Image">
+      </div>
+    </div>
+  </div>
+  <div class="flex-footer">footer</div>
+</div>

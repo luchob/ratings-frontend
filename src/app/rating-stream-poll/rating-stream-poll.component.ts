@@ -14,7 +14,9 @@ export class RatingStreamPollComponent implements OnInit {
 
   private lastRatingId = -1;
   ratings: Array<Rating> = [];
-  private subscriptions = new Subscription();
+
+  // TODO to be added prod URLs
+  qrCodeUrlImage = '../../assets/local-url.png'
 
   constructor(private http: HttpClient, private ratingService: RatingService) {
   }

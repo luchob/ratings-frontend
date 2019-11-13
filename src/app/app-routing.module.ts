@@ -11,7 +11,7 @@ const routes: Routes = [
     component: RatingStreamComponent
   },
   {
-    path: 'rating-stream-poll',
+    path: 'rating-polling',
     component: RatingStreamPollComponent
   },
   {
