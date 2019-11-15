@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {startWith, switchMap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {interval, Subscription} from 'rxjs';
+import {interval} from 'rxjs';
 import {Rating} from '../model/rating';
 import {RatingService} from '../service/rating.service';
 
@@ -15,10 +15,12 @@ export class RatingStreamPollComponent implements OnInit {
   private lastRatingId = -1;
   ratings: Array<Rating> = [];
 
-  // TODO to be added prod URLs
-  qrCodeUrlImage = '../../assets/local-url.png'
+  qrCodeUrlImage: string;
 
-  constructor(private http: HttpClient, private ratingService: RatingService) {
+  constructor(
+    private http: HttpClient,
+    private ratingService: RatingService
+  ) {
   }
 
   ngOnInit() {
@@ -31,6 +33,11 @@ export class RatingStreamPollComponent implements OnInit {
       newRatings => this.renderNewestRatings(newRatings),
       error => console.error(error)
     );
+    if (window.location.href.includes('localhost:4200')) {
+      this.qrCodeUrlImage = '../../assets/local-url.png';
+    } else {
+      this.qrCodeUrlImage = '../../assets/prod-url.png';
+    }
   }
 
   private renderNewestRatings(newRatings: Rating[]) {
