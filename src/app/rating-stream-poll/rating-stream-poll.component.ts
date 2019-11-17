@@ -16,15 +16,17 @@ export class RatingStreamPollComponent implements OnInit {
   ratings: Array<Rating> = [];
 
   qrCodeUrlImage: string;
+  qrData: string = null;
 
   constructor(
     private http: HttpClient,
     private ratingService: RatingService
   ) {
+    this.qrData = window.location.origin;
   }
 
   ngOnInit() {
-    interval(5000)
+    interval(3000)
     .pipe(
       startWith(0),
       switchMap(() => this.ratingService.getRatings(this.lastRatingId))

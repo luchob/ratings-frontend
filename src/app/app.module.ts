@@ -7,9 +7,10 @@ import { RouterModule } from '@angular/router';
 import { RatingSubmitComponent } from './rating-submit/rating-submit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RatingModule } from 'ng-starrating';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RatingViewComponent } from './rating-view/rating-view.component';
 import { RatingStreamPollComponent } from './rating-stream-poll/rating-stream-poll.component';
+import { QRCodeModule } from 'angular2-qrcode';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RatingStreamPollComponent } from './rating-stream-poll/rating-stream-po
     RatingStreamPollComponent
   ],
   imports: [
+    QRCodeModule,
     BrowserModule,
     RouterModule,
     AppRoutingModule,
@@ -32,4 +34,4 @@ import { RatingStreamPollComponent } from './rating-stream-poll/rating-stream-po
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
